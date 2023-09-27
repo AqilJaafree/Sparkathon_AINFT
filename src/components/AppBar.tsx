@@ -54,9 +54,16 @@ export const AppBar: React.FC = () => {
         {/* Wallet & Settings */}
         <div className="navbar-end">
           <div className="hidden md:inline-flex align-items-center justify-items gap-6">
+         
           <NavElement
             label="Home"
             href="/"
+            navigationStarts={() => setIsNavOpen(false)}
+          />
+
+          <NavElement
+            label="Talk"
+            href="/talk"
             navigationStarts={() => setIsNavOpen(false)}
           />
           <NavElement
