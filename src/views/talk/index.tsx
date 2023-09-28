@@ -7,7 +7,7 @@ export const TalkView: FC = ({}) => {
   
     return (
       <div className="talk-page">
-        <h1>Welcome to the Talk Page</h1>
+        <h1 className="text-6xl">Hi there, I'm Yuka</h1>
         {/* Other content on your talk page */}
         <Chatbox />
       </div>
