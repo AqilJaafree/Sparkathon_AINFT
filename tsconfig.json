@@ -17,7 +17,7 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/Function.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/Function.js", "src/components/MetaplexProvider.js", "src/components/MintNFTs.js"],
   "exclude": ["node_modules", ".next",],
   "ts-node": {
     "require": ["tsconfig-paths/register"],
