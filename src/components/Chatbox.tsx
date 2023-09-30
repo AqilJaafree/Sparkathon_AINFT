@@ -11,6 +11,7 @@ export default function Chatbox() {
   const [value, setValue] = React.useState<string>("");
   const [Conversation, setConversation] = React.useState<Conversation[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [debouncedValue, setDebouncedValue] = React.useState(value);
 
   const handleInput = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,10 +20,29 @@ export default function Chatbox() {
     []
   );
 
+
+   // useEffect to log state changes
+   React.useEffect(() => {
+    console.log("Conversation changed: ", Conversation);
+  }, [Conversation]);
+  
+  React.useEffect(() => {
+    console.log("Value changed: ", value);
+  }, [value]);
+  React.useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, 300); // 300ms delay
+  
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value]);
+  
   const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       const chatHistory = [...Conversation, { role: "user", content: value }];
-      const response = await fetch("/pages/api/openAIChat", {
+      const response = await fetch("/api/openAIChat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,10 +65,18 @@ export default function Chatbox() {
   };
 
   const handleRefresh = () => {
+    console.log("Refresh button clicked");
+    console.log("Before Refresh - Conversation: ", Conversation); // Log the conversation before refreshing
+    console.log("Before Refresh - Value: ", value); // Log the input value before refreshing
+    
     inputRef.current?.focus();
-    setValue("");
-    setConversation([]);
-  };
+    setValue(""); // Clear the input value
+    setConversation([]); // Clear the conversation
+    
+    console.log("After Refresh - Conversation: ", Conversation); // Log the conversation after refreshing
+    console.log("After Refresh - Value: ", value); // Log the input value after refreshing
+};
+
 
   return (
     <div className="w-full">
@@ -73,6 +101,7 @@ export default function Chatbox() {
         </button>
       </div>
       <div className="textarea">
+      {void console.log('Rendering conversation with values: ', Conversation)}
         {Conversation.map((item, index) => (
           <React.Fragment key={index}>
             <br />
