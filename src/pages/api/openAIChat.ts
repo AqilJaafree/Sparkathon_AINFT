@@ -11,18 +11,13 @@ export default async function handler(
     res: NextApiResponse
 ){
   console.log(req.body.messages)
+const completion = await openai.chat.completions.create({
+  model: 'gpt-3.5-turbo',
+  messages: req.body.messages,
 
-try {
-  const completion = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
-      messages: req.body.messages,
-  });
-  console.log('API response:', completion);
-  res.status(200).json({ result: completion });
-} catch (error) {
-  console.error('API error:', error);
-  res.status(500).json({ error: 'Internal Server Error' });
-}
+})
+console.log(completion);
+res.status(200).json({ result: completion}) //res.status(200).json({ result: completion.data})
 
 }
 

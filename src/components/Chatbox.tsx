@@ -22,7 +22,7 @@ export default function Chatbox() {
   const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       const chatHistory = [...Conversation, { role: "user", content: value }];
-      const response = await fetch("C/api/openAIChat", {
+      const response = await fetch("/api/openAIChat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

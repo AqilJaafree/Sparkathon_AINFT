@@ -1,0 +1,24 @@
+{
+    "name":"gyaru #0006",
+    "symbol":"PN",
+    "description":"collection of 10 anigirls",
+    "image":"6.png",
+    "attributes": [
+        {
+            "trait_type": "Number",
+            "value": "5",
+            "rarity": "Epic",
+            "hairColor": "Black",
+            "outfit": "High School",
+            "background": "Terrain"
+        }
+    ],
+    "properties":{
+        "files":[
+            {
+              "uri": "6.png",
+              "type": "image/png"
+            }
+        ]
+    }
+}
